@@ -12,6 +12,7 @@ const config = {
     mapquest_consumer_key: process.env.MAPQUEST_CONSUMER_KEY,
     userSecret : process.env.USER_JWT_SECRET_KEY,
     userEmailSecret : process.env.USER_EMAIL_VERIFICATION_SECRET,
+    projectName: process.env.PROJECT_NAME
 
      // email
     emailHost : process.env.MAIL_TRAP_HOST,

@@ -26,6 +26,15 @@ app.use(express.json());
 // Setup cookie parser
     app.use(cookieParser());
 
+    // Base route
+app.get('/', (req, res)=>{
+    res.status(200).json({
+        success: true,
+        env: config.node_env,
+        Project_Name: config.projectName
+    })
+})
+
 // firing the routes
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/user', userRoute);
