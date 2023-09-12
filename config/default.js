@@ -4,6 +4,7 @@ const config = {
     port: process.env.PORT || 6000,
     node_env: process.env.NODE_ENV,
     db_local_uri: process.env.DB_LOCAL_URI,
+    db_uri : process.env.DB_URI,
     jwt_secret : process.env.JWT_SECRET,
     cookie_expires_time: process.env.COOKIE_EXPIRES_TIME,
     jwt_expires_in : process.env.JWT_EXPIRES_IN,
