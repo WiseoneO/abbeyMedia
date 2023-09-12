@@ -2,7 +2,7 @@
 
 Version 1.0
 
-[View Documentation](https://documenter.getpostman.com/view/7526960/2s8YzRyho7)
+[View Documentation](https://documenter.getpostman.com/view/15316307/2s9YC32a8K)
 
 ## How to Start
 1. Clone and cd into Repo
