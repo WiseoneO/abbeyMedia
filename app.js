@@ -6,6 +6,10 @@ const connectDatabase = require('./config/database');
 const erroMiddleware = require('./middlewares/errors');
 const ErrorHandler = require('./utils/errorHandler');
 const cors = require('cors');
+const helment = require('helment');
+const mongoSanitize = require('express-mongo-sanitize');
+const xssClean = require('xss-clean');
+const hpp = require('hpp');
 
 
 // Importing routes
@@ -22,16 +26,28 @@ process.on('uncaughtException',err=>{
 // connecting to database
 connectDatabase();
 
+// Setup security headers
+app.use(helment());
+
 // Setup cors - Accessible by other domains
 app.use(cors());
+
+// Prevent parameter pollution
+app.use(hpp());
+
+// sanitize data
+app.use(mongoSanitize());
+
+// prevent xss attacks
+app.use(xssClean())
 
 // Setup body parser
 app.use(express.json());
 
 // Setup cookie parser
-    app.use(cookieParser());
+app.use(cookieParser());
 
-    // Base route
+// Base route
 app.get('/', (req, res)=>{
     res.status(200).json({
         success: true,
