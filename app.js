@@ -31,7 +31,7 @@ app.get('/', (req, res)=>{
     res.status(200).json({
         success: true,
         env: config.node_env,
-        Project_Name: config.projectName
+        Project_Name: `Abbey Media`
     })
 })
 
