@@ -6,7 +6,7 @@ const connectDatabase = require('./config/database');
 const erroMiddleware = require('./middlewares/errors');
 const ErrorHandler = require('./utils/errorHandler');
 const cors = require('cors');
-const helment = require('helment');
+const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xssClean = require('xss-clean');
 const hpp = require('hpp');
@@ -29,7 +29,7 @@ connectDatabase();
 
 
 // Setup security headers
-app.use(helment());
+app.use(helmet());
 
 // Prevent parameter pollution
 app.use(hpp());
