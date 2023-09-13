@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const connectDatabase = require('./config/database');
 const erroMiddleware = require('./middlewares/errors');
 const ErrorHandler = require('./utils/errorHandler');
+const cors = require('cors');
+
 
 // Importing routes
 const authRoute = require('./routes/auth');
@@ -19,6 +21,9 @@ process.on('uncaughtException',err=>{
 
 // connecting to database
 connectDatabase();
+
+// Setup cors - Accessible by other domains
+app.use(cors);
 
 // Setup body parser
 app.use(express.json());
