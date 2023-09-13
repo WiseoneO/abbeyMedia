@@ -26,11 +26,10 @@ process.on('uncaughtException',err=>{
 // connecting to database
 connectDatabase();
 
+
+
 // Setup security headers
 app.use(helment());
-
-// Setup cors - Accessible by other domains
-app.use(cors());
 
 // Prevent parameter pollution
 app.use(hpp());
@@ -40,6 +39,9 @@ app.use(mongoSanitize());
 
 // prevent xss attacks
 app.use(xssClean())
+
+// Setup cors - Accessible by other domains
+app.use(cors());
 
 // Setup body parser
 app.use(express.json());
