@@ -23,7 +23,7 @@ process.on('uncaughtException',err=>{
 connectDatabase();
 
 // Setup cors - Accessible by other domains
-app.use(cors);
+app.use(cors());
 
 // Setup body parser
 app.use(express.json());
