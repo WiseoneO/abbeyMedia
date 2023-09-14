@@ -5,12 +5,13 @@ const sendToken = require('../utils/jwtToken');
 
 // Get current user profile
 exports.getUserProfile = catchAsyncErrors(async(req, res,next)=>{
-    const user = await userModel.findById(req.user.id).populate([
+    const user = await userModel.findById({_id:req.user.id, isDeleted:false}).populate([
         {path: "followers", select:["username"]},
         {path: "following", select:["username"]}
     ])
 
     res.status(200).json({
+        
         success: true,
         data: user
     });
@@ -68,7 +69,7 @@ exports.userFollow = catchAsyncErrors(async(req, res, next)=>{
 
     // 3) Check if the current user is already a follower of the targeted user
     if(userToFollow.followers.includes(currentUser._id)){
-        return next(new ErrorHandler('you already follow this user'));
+        return next(new ErrorHandler('you already follow this user',400));
     }
 
     // 4) update the current user following array 
@@ -109,19 +110,13 @@ exports.userUnfollow = catchAsyncErrors(async(req, res, next)=>{
 
     res.status(204).json({
         success: true,
-    })
-
-
-
-    
-
-    
+    }) 
 });
 
-// Delete current user Temporarily =>/api/v1/user/restore/:slug (admin only)
+// Restore current user Temporarily =>/api/v1/user/restore (admin only)
 exports.restoreProfile = catchAsyncErrors(async(req,res, next)=>{
 
-    // Reset isDeleted boolean value to false
+    // Reset isDeleted boolean value to false for multiple or single user
     const restoreusers = await userModel.updateMany(
         {_id:{$in: req.body.ids}},
         {isDeleted: false}
@@ -130,15 +125,17 @@ exports.restoreProfile = catchAsyncErrors(async(req,res, next)=>{
     if(restoreusers){
         return res.status(204).json({
             success: true,
-            message: 'Your account has been restored'
         });
     }
     
 });
+
+// Delete current user Temporarily =>/api/v1/user/profile/delete
 exports.deleteProfile = catchAsyncErrors(async(req,res, next)=>{
 
     await userModel.findByIdAndUpdate( {_id:req.user.id},{isDeleted: true},{new: true});
 
+    // expire the cookie
     res.cookie('token', 'none',{
         expires: new Date(Date.now()),
         httpOnly:true

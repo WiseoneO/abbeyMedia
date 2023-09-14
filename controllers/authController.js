@@ -29,7 +29,7 @@ exports.loginUser = catchAsyncErrors(async(req, res, next)=>{
     }
 
     // check if email exist
-    const user = await userModel.findOne({email: email}).select('+password');
+    const user = await userModel.findOne({email: email, isDeleted:false}).select('+password');
 
     if(!user){
         return next(new ErrorHandler(`No user with ${email} found.`, 401))
