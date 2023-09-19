@@ -29,9 +29,14 @@ app.use(express.json());
 // Setup cookie parser
 app.use(cookieParser());
 
-
+//handling all uncaught errors
+process.on("uncaughtException", (err) => {
+    console.log("UNCAUGHT EXCEPTIONS! 🔥 Shutting down...");
+    console.log(`${err.name} : ${err.message}`);
+    process.exit(1);
+  });
 // firing the routes
-app.use(require('./src/routes/index'))
+app.use(require('./src/routes/index'));
 
 // middleware to handle global errors
 app.use(globalErrorHandler);
