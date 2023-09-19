@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   res.status(200).json({
     message: "Server is running",
     version: config.version,
-    env: config.env,
+    env: config.node_env,
   });
 });
 
