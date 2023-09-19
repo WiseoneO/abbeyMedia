@@ -8,7 +8,7 @@ const connect = () => {
         useUnifiedTopology: true,
       };
       mongoose
-        .connect(config.db_local_uri, options)
+        .connect(config.db_uri, options)
         .then((con) => resolve(con))
         .catch((err) => reject(err));
     });
