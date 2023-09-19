@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.use('/api/v1', require('./v1'));
+router.use('/v1', require('./v1'));
 
 // router.all("*", (req, res, next) => {
 //   return next(new ErrorHandler(`${req.originalUrl} endpoint doesn't exist`, 404));
