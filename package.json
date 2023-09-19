@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./src/server",
     "dev": "nodemon ./src/server",
+    "build": "node ./src/server",
     "prod": "SET NODE_ENV=production& nodemon ./src/server"
   },
   "author": "wiseone",
