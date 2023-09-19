@@ -6,8 +6,8 @@ const {getUserProfile,
     userFollow,
     userUnfollow,
     restoreProfile,
-    getUsers,deleteUsers} = require('../controllers/userController');
-const {isAuthenticated,authorizeRoles} = require('../middlewares/auth');
+    getUsers,deleteUsers} = require('../../controllers/userController');
+const {isAuthenticated,authorizeRoles} = require('../../middlewares/auth');
 
 router.use(isAuthenticated);
 

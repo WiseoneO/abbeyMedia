@@ -2,11 +2,11 @@
   "name": "abbeymedia",
   "version": "1.0.0",
   "description": "This is an abbey social media applications that makes it possible for account holders to network.",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app",
-    "prod": "SET NODE_ENV=production& nodemon app.js"
+    "start": "node ./src/server",
+    "dev": "nodemon ./src/server",
+    "prod": "SET NODE_ENV=production& nodemon ./src/server"
   },
   "author": "wiseone",
   "license": "ISC",

@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const {registerUser,loginUser,forgotPassword,resetPassword,logout} = require('../controllers/authController');
-const {isAuthenticated} = require('../middlewares/auth');
+const {registerUser,loginUser,forgotPassword,resetPassword,logout} = require('../../controllers/authController');
+const {isAuthenticated} = require('../../middlewares/auth');
 
 
 router.post('/', registerUser);
